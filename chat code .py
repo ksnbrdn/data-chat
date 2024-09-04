@@ -9,29 +9,13 @@ import plotly.express as px
 from dash import Dash, dcc, html, dash_table
 from dash.dependencies import Input, Output
 
-
-# In[ ]:
-
-
 # Загрузка данных
 df = pd.read_csv('https://raw.githubusercontent.com/ksnbrdn/data-chat/main/2018.csv')
-
-
-# In[ ]:
-
 
 # Сортировка и выбор топ-10 стран по Score
 top_10 = df.sort_values('Score', ascending=False).head(10)
 
-
-# In[ ]:
-
-
 app = Dash(__name__)
-
-
-# In[ ]:
-
 
 app.layout = html.Div([
     html.H1('Dashboard анализа данных о счастье стран'),
@@ -51,20 +35,12 @@ app.layout = html.Div([
     )
 ])
 
-
-# In[ ]:
-
-
 @app.callback(
     [Output('table', 'data'),
      Output('bar-chart', 'figure'),
      Output('choropleth-map', 'figure')],
     [Input('country-dropdown', 'value')]
 )
-
-
-# In[ ]:
-
 
 def update_dashboard(selected_countries):
     if selected_countries:
@@ -90,5 +66,4 @@ def update_dashboard(selected_countries):
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-        
 
